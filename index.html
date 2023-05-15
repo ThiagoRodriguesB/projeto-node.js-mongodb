@@ -33,7 +33,17 @@
     </div>
   </div>
 
-
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 id='titulo'></h3>
+        <p id='autor'></p>
+        <p id='editora'></p>
+        <p id="numerodePaginas"></p> 
+      </div>
+    </div>
+  </div>
+  <br />
 
   <script>
     function searchLivro() {
@@ -48,11 +58,15 @@
         "url": "http://localhost:3000/livros",
         "method": "GET"
       }
-      
+      fetch(`http://localhost:3000/livros`, settings)
+      .then(response => { response.json()
+      .then(data => showData(data))
+      })
+      .catch(e => console.log("Deu erro: " + e,message))
       
      $.ajax(settings).done(function (response) {
         console.log(response);
-        $('#titulo').append(response.titulo + "(" + response.autor + ")");
+       // $('#title').append(response.Title + "(" + response.Year + ")");
        // $("#my_image").attr("src", response.Poster);
        // $('#description').append(response.Plot);
        // $('#imdb').append("IMDB: " + response.imdbRating); 
@@ -60,17 +74,6 @@
 
     }
   </script>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h3 id='titulo'></h3>
-          <p id='autor'></p>
-          <p id='editora'></p>
-          <p id="numerodePaginas"></p> 
-        </div>
-      </div>
-    </div>
-    <br />
 
 </body>
 
