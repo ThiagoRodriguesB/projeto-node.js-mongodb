@@ -58,15 +58,11 @@
         "url": "http://localhost:3000/livros",
         "method": "GET"
       }
-      fetch(`http://localhost:3000/livros`, settings)
-      .then(response => { response.json()
-      .then(data => showData(data))
-      })
-      .catch(e => console.log("Deu erro: " + e,message))
+      
       
      $.ajax(settings).done(function (response) {
         console.log(response);
-       // $('#title').append(response.Title + "(" + response.Year + ")");
+        $('#titulo').append(response.titulo + "(" + response.autor + ")");
        // $("#my_image").attr("src", response.Poster);
        // $('#description').append(response.Plot);
        // $('#imdb').append("IMDB: " + response.imdbRating); 
