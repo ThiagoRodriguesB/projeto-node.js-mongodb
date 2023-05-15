@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title>Busca de Livros</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+  
+</head>
+
+<body>
+
+  <div class="jumbotron text-center">
+    <h1>Busca de Livros</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <form>
+            
+            <a class="btn btn-primary" onclick="searchLivro()">Buscar</a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    function searchLivro() {
+      $('#titulo').empty();
+      $('#autor').empty();
+      $('#editora').empty();
+      $("#numerodePaginas").empty();
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/livros",
+        "method": "GET"
+      }
+      
+      
+     $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#titulo').append(response.titulo + "(" + response.autor + ")");
+       // $("#my_image").attr("src", response.Poster);
+       // $('#description').append(response.Plot);
+       // $('#imdb').append("IMDB: " + response.imdbRating); 
+      });
+
+    }
+  </script>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 id='titulo'></h3>
+          <p id='autor'></p>
+          <p id='editora'></p>
+          <p id="numerodePaginas"></p> 
+        </div>
+      </div>
+    </div>
+    <br />
+
+</body>
+
+</html>
